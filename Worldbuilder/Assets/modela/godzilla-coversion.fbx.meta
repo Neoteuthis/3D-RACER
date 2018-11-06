@@ -1,0 +1,315 @@
+fileFormatVersion: 2
+guid: 50d065ae715489f409525a2c82580bc1
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: 1 finger L.004
+    100002: 1 finger L.005
+    100004: 1 finger L.006
+    100006: 1 finger L.007
+    100008: 1 finger L.007_end
+    100010: 1 finger R
+    100012: 1 finger R.001
+    100014: 1 finger R.002
+    100016: 1 finger R.003
+    100018: 1 finger R.003_end
+    100020: 1 toe 2 L.001
+    100022: 1 toe 2 L.001_end
+    100024: 1 toe 2 R
+    100026: 1 toe 2 R_end
+    100028: 1 toe L.001
+    100030: 1 toe R
+    100032: 2 finger L.004
+    100034: 2 finger L.005
+    100036: 2 finger L.006
+    100038: 2 finger L.007
+    100040: 2 finger L.007_end
+    100042: 2 finger R
+    100044: 2 finger R.001
+    100046: 2 finger R.002
+    100048: 2 finger R.003
+    100050: 2 finger R.003_end
+    100052: 2 toe 2 L.001
+    100054: 2 toe 2 L.001_end
+    100056: 2 toe 2 R
+    100058: 2 toe 2 R_end
+    100060: 2 toe L.001
+    100062: 2 toe R
+    100064: 3 finger L.004
+    100066: 3 finger L.005
+    100068: 3 finger L.006
+    100070: 3 finger L.007
+    100072: 3 finger L.007_end
+    100074: 3 finger R
+    100076: 3 finger R.001
+    100078: 3 finger R.002
+    100080: 3 finger R.003
+    100082: 3 finger R.003_end
+    100084: 3 toe 2 L.001
+    100086: 3 toe 2 L.001_end
+    100088: 3 toe 2 R
+    100090: 3 toe 2 R_end
+    100092: 3 toe L.001
+    100094: 3 toe R
+    100096: 4 finger L.003
+    100098: 4 finger L.004
+    100100: 4 finger L.005
+    100102: 4 finger L.005_end
+    100104: 4 finger R
+    100106: 4 finger R.001
+    100108: 4 finger R.002
+    100110: 4 finger R.002_end
+    100112: ass
+    100114: ass_end
+    100116: body-low
+    100118: body-up
+    100120: chin
+    100122: chin_end
+    100124: control
+    100126: foot IK L.001
+    100128: foot IK L.001_end
+    100130: foot IK R
+    100132: foot IK R_end
+    100134: foot L.001
+    100136: foot R
+    100138: godzilla
+    100140: //RootNode
+    100142: godzillaArmature
+    100144: hand IK L.001
+    100146: hand IK L.001_end
+    100148: hand IK R
+    100150: hand IK R_end
+    100152: head
+    100154: hemi
+    100156: jaw
+    100158: loer leg L.001
+    100160: loer leg R
+    100162: lower arm L.001
+    100164: lower arm R
+    100166: neck-low
+    100168: neck-up
+    100170: stomach
+    100172: stomach_end
+    100174: sun
+    100176: tail
+    100178: tail IK
+    100180: tail IK_end
+    100182: tail.001
+    100184: tail.002
+    100186: tail.003
+    100188: tail.004
+    100190: tail.005
+    100192: tail.006
+    100194: tail.006_end
+    100196: tail.008
+    100198: tail.009
+    100200: tongue
+    100202: tongue.002
+    100204: tongue.003
+    100206: tongue.003_end
+    100208: upper arm L.001
+    100210: upper arm R
+    100212: upper leg L.001
+    100214: upper leg R
+    400000: 1 finger L.004
+    400002: 1 finger L.005
+    400004: 1 finger L.006
+    400006: 1 finger L.007
+    400008: 1 finger L.007_end
+    400010: 1 finger R
+    400012: 1 finger R.001
+    400014: 1 finger R.002
+    400016: 1 finger R.003
+    400018: 1 finger R.003_end
+    400020: 1 toe 2 L.001
+    400022: 1 toe 2 L.001_end
+    400024: 1 toe 2 R
+    400026: 1 toe 2 R_end
+    400028: 1 toe L.001
+    400030: 1 toe R
+    400032: 2 finger L.004
+    400034: 2 finger L.005
+    400036: 2 finger L.006
+    400038: 2 finger L.007
+    400040: 2 finger L.007_end
+    400042: 2 finger R
+    400044: 2 finger R.001
+    400046: 2 finger R.002
+    400048: 2 finger R.003
+    400050: 2 finger R.003_end
+    400052: 2 toe 2 L.001
+    400054: 2 toe 2 L.001_end
+    400056: 2 toe 2 R
+    400058: 2 toe 2 R_end
+    400060: 2 toe L.001
+    400062: 2 toe R
+    400064: 3 finger L.004
+    400066: 3 finger L.005
+    400068: 3 finger L.006
+    400070: 3 finger L.007
+    400072: 3 finger L.007_end
+    400074: 3 finger R
+    400076: 3 finger R.001
+    400078: 3 finger R.002
+    400080: 3 finger R.003
+    400082: 3 finger R.003_end
+    400084: 3 toe 2 L.001
+    400086: 3 toe 2 L.001_end
+    400088: 3 toe 2 R
+    400090: 3 toe 2 R_end
+    400092: 3 toe L.001
+    400094: 3 toe R
+    400096: 4 finger L.003
+    400098: 4 finger L.004
+    400100: 4 finger L.005
+    400102: 4 finger L.005_end
+    400104: 4 finger R
+    400106: 4 finger R.001
+    400108: 4 finger R.002
+    400110: 4 finger R.002_end
+    400112: ass
+    400114: ass_end
+    400116: body-low
+    400118: body-up
+    400120: chin
+    400122: chin_end
+    400124: control
+    400126: foot IK L.001
+    400128: foot IK L.001_end
+    400130: foot IK R
+    400132: foot IK R_end
+    400134: foot L.001
+    400136: foot R
+    400138: godzilla
+    400140: //RootNode
+    400142: godzillaArmature
+    400144: hand IK L.001
+    400146: hand IK L.001_end
+    400148: hand IK R
+    400150: hand IK R_end
+    400152: head
+    400154: hemi
+    400156: jaw
+    400158: loer leg L.001
+    400160: loer leg R
+    400162: lower arm L.001
+    400164: lower arm R
+    400166: neck-low
+    400168: neck-up
+    400170: stomach
+    400172: stomach_end
+    400174: sun
+    400176: tail
+    400178: tail IK
+    400180: tail IK_end
+    400182: tail.001
+    400184: tail.002
+    400186: tail.003
+    400188: tail.004
+    400190: tail.005
+    400192: tail.006
+    400194: tail.006_end
+    400196: tail.008
+    400198: tail.009
+    400200: tongue
+    400202: tongue.002
+    400204: tongue.003
+    400206: tongue.003_end
+    400208: upper arm L.001
+    400210: upper arm R
+    400212: upper leg L.001
+    400214: upper leg R
+    2100000: godzillaMaterial
+    4300000: godzilla
+    9500000: //RootNode
+    10800000: hemi
+    10800002: sun
+    13700000: godzilla
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: godzillaMaterial
+    second: {fileID: 2100000, guid: beb5a14911659a9478344c479efb8b20, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
