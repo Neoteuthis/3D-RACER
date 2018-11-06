@@ -98,25 +98,25 @@ public class playerscript : MonoBehaviour
         {
             Vector3 temp = wheelFL.transform.position;
             //Note: trans.up works for my model, you might need trans.right if you rotated a cylinder!
-            temp.y = (contact.point + (wheelFL.transform.up * wheelFL.radius)*20).y;
+            temp.y = (contact.point + (wheelFL.transform.up * wheelFL.radius)).y;
             wheelTransformFL.position = temp;
         }
         if (wheelFR.GetGroundHit(out contact))
         {
             Vector3 temp = wheelFR.transform.position;
-            temp.y = (contact.point + (wheelFR.transform.up * wheelFR.radius) * 20).y;
+            temp.y = (contact.point + (wheelFR.transform.up * wheelFR.radius)).y;
             wheelTransformFR.position = temp;
         }
         if (wheelBL.GetGroundHit(out contact))
         {
             Vector3 temp = wheelBL.transform.position;
-            temp.y = (contact.point + (wheelBL.transform.up * wheelBL.radius) * 20).y;
+            temp.y = (contact.point + (wheelBL.transform.up * wheelBL.radius)).y;
             wheelTransformBL.position = temp;
         }
         if (wheelBR.GetGroundHit(out contact))
         {
             Vector3 temp = wheelBR.transform.position;
-            temp.y = (contact.point + (wheelBR.transform.up * wheelBR.radius) * 20).y;
+            temp.y = (contact.point + (wheelBR.transform.up * wheelBR.radius)).y;
             wheelTransformBR.position = temp;
         }
     }
