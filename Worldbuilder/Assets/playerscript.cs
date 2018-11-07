@@ -32,6 +32,8 @@ public class playerscript : MonoBehaviour
     public bool isonroad = true;
     public bool ismanual = true;
     public bool isgrounded = true;
+    public static float playeracceleration;
+    public bool isplayerchar = false;
     // Use this for initialization
     void Start()
     {
@@ -86,6 +88,10 @@ public class playerscript : MonoBehaviour
     }
     void Update()
     {
+        if (isplayerchar)
+        {
+            playeracceleration = Mathf.Abs(acceleration / 100);
+        }
         //alternate control scheme
         if (ismanual) {
              body.velocity = transform.forward * acceleration;
