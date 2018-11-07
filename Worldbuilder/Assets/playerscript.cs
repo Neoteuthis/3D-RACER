@@ -91,11 +91,11 @@ public class playerscript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * 50, Space.World);
+            transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * maxTurningAngle, Space.World);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * 50, Space.World);
+            transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * maxTurningAngle, Space.World);
         }
         if (Input.GetKey(KeyCode.S))
         {
