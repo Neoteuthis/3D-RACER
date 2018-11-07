@@ -25,8 +25,10 @@ public class playerscript : MonoBehaviour
     public float topSpeed = 150;
     private float currentSpeed;
     public float acceleration = 0;
-
-
+    public float maxacceleration = 100;
+    public float maxoffroadacceleration = 40;
+    public bool isonroad = true;
+    public bool ismanual = true;
     // Use this for initialization
     void Start()
     {
@@ -80,12 +82,20 @@ public class playerscript : MonoBehaviour
 
     }
     void Update()
-   {
+    {
+        if (ismanual) { 
         body.velocity = transform.forward * acceleration;
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) )
         {
-            acceleration++;
-        } else if(acceleration >0)
+                if (isonroad == true && acceleration <= maxacceleration)
+                {
+                    acceleration++;
+                }
+                if (isonroad == false && acceleration <= maxoffroadacceleration)
+                {
+                    acceleration++;
+                }
+            } else if (acceleration > 0)
         {
             acceleration--;
         }
@@ -99,7 +109,19 @@ public class playerscript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
-            acceleration--;
+                if (isonroad == true && acceleration >= -maxacceleration)
+                {
+                    acceleration--;
+                }
+                if (isonroad == false && acceleration >= -maxoffroadacceleration)
+                {
+                    acceleration--;
+                }
+            }
+            else if (acceleration < 0)
+            {
+                acceleration++;
+            }
         }
         float rotationThisFrame = 360 * Time.deltaTime;
       wheelTransformFL.Rotate(0, -wheelFL.rpm / rotationThisFrame, 0);
@@ -138,6 +160,26 @@ public class playerscript : MonoBehaviour
             Vector3 temp = wheelBR.transform.position;
             temp.y = (contact.point + (wheelBR.transform.up * wheelBR.radius)).y;
             wheelTransformBR.position = temp;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+         if (other.gameObject.tag == "Road")
+        {
+            Debug.Log("hit");
+            isonroad = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Road")
+        {
+            Debug.Log("miss");
+            isonroad = false;
+            if (acceleration > maxoffroadacceleration)
+            {
+                 acceleration = maxoffroadacceleration;
+            }
         }
     }
 }
