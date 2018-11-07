@@ -24,7 +24,7 @@ public class playerscript : MonoBehaviour
     public float decelerationTorque = 30;
     public float topSpeed = 150;
     private float currentSpeed;
-
+    public float acceleration = 0;
 
 
     // Use this for initialization
@@ -81,11 +81,27 @@ public class playerscript : MonoBehaviour
     }
     void Update()
    {
+        body.velocity = transform.forward * acceleration;
         if (Input.GetKey(KeyCode.W))
         {
-            body.velocity = transform.forward * 50;
+            acceleration++;
+        } else if(acceleration >0)
+        {
+            acceleration--;
         }
-      float rotationThisFrame = 360 * Time.deltaTime;
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * 50, Space.World);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * 50, Space.World);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            acceleration--;
+        }
+        float rotationThisFrame = 360 * Time.deltaTime;
       wheelTransformFL.Rotate(0, -wheelFL.rpm / rotationThisFrame, 0);
       wheelTransformFR.Rotate(0, -wheelFR.rpm / rotationThisFrame, 0);
       wheelTransformBL.Rotate(0, -wheelBL.rpm / rotationThisFrame, 0);
