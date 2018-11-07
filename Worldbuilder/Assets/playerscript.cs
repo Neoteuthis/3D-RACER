@@ -87,13 +87,13 @@ public class playerscript : MonoBehaviour
     {
         //alternate control scheme
         if (ismanual) {
-            // body.velocity = transform.forward * acceleration;
+             body.velocity = transform.forward * acceleration;
             if (isgrounded)
-            {
+          {
                 body.velocity = new Vector3(transform.forward.x * acceleration, transform.forward.y * acceleration , transform.forward.z * acceleration);
             } else
-            {
-                body.velocity = new Vector3(transform.forward.x * acceleration, -9.8f, transform.forward.z * acceleration);
+           {
+               body.velocity = new Vector3(transform.forward.x * acceleration, -98f, transform.forward.z * acceleration);
             }
             if (Input.GetKey(KeyCode.W) )
         {

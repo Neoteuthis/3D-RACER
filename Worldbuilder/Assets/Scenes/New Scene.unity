@@ -132,6 +132,7 @@ MonoBehaviour:
   maxtorque: 10
   maxTurningAngle: 10
   currentpos: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
   wheelFL: {fileID: 2057805508}
   wheelFR: {fileID: 1166275741}
   wheelBL: {fileID: 773614226}
@@ -149,6 +150,7 @@ MonoBehaviour:
   maxoffroadacceleration: 70
   isonroad: 1
   ismanual: 0
+  isgrounded: 1
 --- !u!4 &73295082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400008, guid: 10d5972a5440d489f8a54e2d7498188b,
@@ -1727,7 +1729,7 @@ Prefab:
     - target: {fileID: 114505543143143186, guid: 12555d68348b15a48abba2f8bd8fe49a,
         type: 2}
       propertyPath: maxTurningAngle
-      value: 45
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 114505543143143186, guid: 12555d68348b15a48abba2f8bd8fe49a,
         type: 2}
