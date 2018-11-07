@@ -8,6 +8,7 @@ public class playerscript : MonoBehaviour
     public float maxtorque = 10;
     public float maxTurningAngle = 10;
     public Vector3 currentpos;
+    public Vector3 gravity;
     public static int score = 0;
     public static int highscore = 0;
     public WheelCollider wheelFL;
@@ -29,13 +30,14 @@ public class playerscript : MonoBehaviour
     public float maxoffroadacceleration = 40;
     public bool isonroad = true;
     public bool ismanual = true;
+    public bool isgrounded = true;
     // Use this for initialization
     void Start()
     {
         //lower center of mass for roll-over resistance
         body = GetComponent<Rigidbody>();
         body.centerOfMass += centerOfMassAdjustment;
-
+        gravity = new Vector3(0, -20, 0);
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -83,9 +85,17 @@ public class playerscript : MonoBehaviour
     }
     void Update()
     {
-        if (ismanual) { 
-        body.velocity = transform.forward * acceleration;
-        if (Input.GetKey(KeyCode.W) )
+        //alternate control scheme
+        if (ismanual) {
+            // body.velocity = transform.forward * acceleration;
+            if (isgrounded)
+            {
+                body.velocity = new Vector3(transform.forward.x * acceleration, transform.forward.y * acceleration , transform.forward.z * acceleration);
+            } else
+            {
+                body.velocity = new Vector3(transform.forward.x * acceleration, -9.8f, transform.forward.z * acceleration);
+            }
+            if (Input.GetKey(KeyCode.W) )
         {
                 if (isonroad == true && acceleration <= maxacceleration)
                 {
@@ -139,7 +149,6 @@ public class playerscript : MonoBehaviour
         if (wheelFL.GetGroundHit(out contact))
         {
             Vector3 temp = wheelFL.transform.position;
-            //Note: trans.up works for my model, you might need trans.right if you rotated a cylinder!
             temp.y = (contact.point + (wheelFL.transform.up * wheelFL.radius)).y;
             wheelTransformFL.position = temp;
         }
@@ -164,10 +173,15 @@ public class playerscript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        //check if vehicle is on the track
          if (other.gameObject.tag == "Road")
         {
             Debug.Log("hit");
             isonroad = true;
+        }
+        if (other.gameObject.tag == "Terrain")
+        {
+            isgrounded = true;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -180,6 +194,10 @@ public class playerscript : MonoBehaviour
             {
                  acceleration = maxoffroadacceleration;
             }
+        }
+        if (other.gameObject.tag == "Terrain")
+        {
+            isgrounded = false;
         }
     }
 }
