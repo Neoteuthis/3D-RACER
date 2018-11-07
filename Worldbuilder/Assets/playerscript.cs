@@ -17,6 +17,7 @@ public class playerscript : MonoBehaviour
     public WheelCollider wheelBR;
     public Vector3 centerOfMassAdjustment = new Vector3(0f, -0.9f, 0f);
     private Rigidbody body;
+    public GameObject backlights;
     public float spoilerRatio = 0.1f;
     public Transform wheelTransformFL;
     public Transform wheelTransformFR;
@@ -95,6 +96,7 @@ public class playerscript : MonoBehaviour
            {
                body.velocity = new Vector3(transform.forward.x * acceleration, -98f, transform.forward.z * acceleration);
             }
+            //controls
             if (Input.GetKey(KeyCode.W) )
         {
                 if (isonroad == true && acceleration <= maxacceleration)
@@ -105,10 +107,12 @@ public class playerscript : MonoBehaviour
                 {
                     acceleration++;
                 }
+                backlights.SetActive(false);
             } else if (acceleration > 0)
         {
             acceleration--;
-        }
+            backlights.SetActive(true);
+            }
         if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * maxTurningAngle, Space.World);
