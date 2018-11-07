@@ -81,6 +81,10 @@ public class playerscript : MonoBehaviour
     }
     void Update()
    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            body.velocity = transform.forward * 50;
+        }
       float rotationThisFrame = 360 * Time.deltaTime;
       wheelTransformFL.Rotate(0, -wheelFL.rpm / rotationThisFrame, 0);
       wheelTransformFR.Rotate(0, -wheelFR.rpm / rotationThisFrame, 0);
