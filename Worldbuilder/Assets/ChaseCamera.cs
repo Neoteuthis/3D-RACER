@@ -23,7 +23,7 @@ public class ChaseCamera : MonoBehaviour
         currentHeight = Mathf.Lerp(currentHeight, desiredHeight, heightDamping * Time.deltaTime);
         Quaternion currentRotation = Quaternion.Euler(0, currentAngle, 0);
         //Set our new positions.
-        Vector3 finalPosition = car.position - (currentRotation * Vector3.forward * distance);
+        Vector3 finalPosition = car.position - (currentRotation * Vector3.forward * (distance - 30 + (playerscript.playeracceleration*5)));
         finalPosition.y = currentHeight;
         transform.position = finalPosition;
         transform.LookAt(car);
