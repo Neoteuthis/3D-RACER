@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 public class playerscript : MonoBehaviour
 {
     //vars
@@ -43,49 +40,49 @@ public class playerscript : MonoBehaviour
         gravity = new Vector3(0, -20, 0);
     }
     // Update is called once per frame
-    void FixedUpdate()
-    {
-            currentpos = gameObject.transform.position;
-        //steering
-        wheelFL.steerAngle = Input.GetAxis("Horizontal") * maxTurningAngle;
-        wheelFR.steerAngle = Input.GetAxis("Horizontal") * maxTurningAngle;
-        //drive
-        wheelBL.motorTorque = Input.GetAxis("Vertical") * maxtorque;
-        wheelBR.motorTorque = Input.GetAxis("Vertical") * maxtorque;
-       Vector3 localVelocity = transform.InverseTransformDirection(body.velocity);
-       body.AddForce(-transform.up * (localVelocity.z * spoilerRatio), ForceMode.Impulse);
-        //apply deceleration when pressing the breaks or lightly when not pressing the gas.
-        if (Input.GetAxis("Vertical") <= -0.5f && localVelocity.z > 0)
-        {
-            wheelBL.brakeTorque = decelerationTorque + maxtorque;
-            wheelBR.brakeTorque = decelerationTorque + maxtorque;
-        }
-        else if (Input.GetAxis("Vertical") == 0)
-        {
-            wheelBL.brakeTorque = decelerationTorque;
-            wheelBR.brakeTorque = decelerationTorque;
-        }
-        else
-        {
-            wheelBL.brakeTorque = 0;
-            wheelBR.brakeTorque = 0;
-        }
-        //calculate max speed in KM/H (condensed calculation)
-        currentSpeed = wheelBL.radius * wheelBL.rpm * Mathf.PI * 0.12f;
-        if (currentSpeed < topSpeed)
-        {
-            //rear wheel drive.
-            wheelBL.motorTorque = Input.GetAxis("Vertical") * maxtorque;
-            wheelBR.motorTorque = Input.GetAxis("Vertical") * maxtorque;
-        }
-        else
-        {
-            //can't go faster, already at top speed that engine produces.
-            wheelBL.motorTorque = 0;
-            wheelBR.motorTorque = 0;
-        }
+    //void FixedUpdate()
+    //{
+    //        currentpos = gameObject.transform.position;
+    //    //steering
+    //    wheelFL.steerAngle = Input.GetAxis("Horizontal") * maxTurningAngle;
+    //    wheelFR.steerAngle = Input.GetAxis("Horizontal") * maxTurningAngle;
+    //    //drive
+    //    wheelBL.motorTorque = Input.GetAxis("Vertical") * maxtorque;
+    //    wheelBR.motorTorque = Input.GetAxis("Vertical") * maxtorque;
+    //   Vector3 localVelocity = transform.InverseTransformDirection(body.velocity);
+    //   body.AddForce(-transform.up * (localVelocity.z * spoilerRatio), ForceMode.Impulse);
+    //    //apply deceleration when pressing the breaks or lightly when not pressing the gas.
+    //    if (Input.GetAxis("Vertical") <= -0.5f && localVelocity.z > 0)
+    //    {
+    //        wheelBL.brakeTorque = decelerationTorque + maxtorque;
+    //        wheelBR.brakeTorque = decelerationTorque + maxtorque;
+    //    }
+    //    else if (Input.GetAxis("Vertical") == 0)
+    //    {
+    //        wheelBL.brakeTorque = decelerationTorque;
+    //        wheelBR.brakeTorque = decelerationTorque;
+    //    }
+    //    else
+    //    {
+    //        wheelBL.brakeTorque = 0;
+    //        wheelBR.brakeTorque = 0;
+    //    }
+    //    //calculate max speed in KM/H (condensed calculation)
+    //    currentSpeed = wheelBL.radius * wheelBL.rpm * Mathf.PI * 0.12f;
+    //    if (currentSpeed < topSpeed)
+    //    {
+    //        //rear wheel drive.
+    //        wheelBL.motorTorque = Input.GetAxis("Vertical") * maxtorque;
+    //        wheelBR.motorTorque = Input.GetAxis("Vertical") * maxtorque;
+    //    }
+    //    else
+    //    {
+    //        //can't go faster, already at top speed that engine produces.
+    //        wheelBL.motorTorque = 0;
+    //        wheelBR.motorTorque = 0;
+    //    }
 
-    }
+    //}
     void Update()
     {
         if (isplayerchar)
@@ -149,38 +146,38 @@ public class playerscript : MonoBehaviour
       wheelTransformBL.Rotate(0, -wheelBL.rpm / rotationThisFrame, 0);
       wheelTransformBR.Rotate(0, -wheelBR.rpm / rotationThisFrame, 0);
         //Adjust the wheels heights based on the suspension.
-        UpdateWheelPositions();
+      //  UpdateWheelPositions();
     }
     //move wheels based on their suspension.
-    void UpdateWheelPositions()
-    {
-        WheelHit contact = new WheelHit();
+    //void UpdateWheelPositions()
+    //{
+    //    WheelHit contact = new WheelHit();
 
-        if (wheelFL.GetGroundHit(out contact))
-        {
-            Vector3 temp = wheelFL.transform.position;
-            temp.y = (contact.point + (wheelFL.transform.up * wheelFL.radius)).y;
-            wheelTransformFL.position = temp;
-        }
-        if (wheelFR.GetGroundHit(out contact))
-        {
-            Vector3 temp = wheelFR.transform.position;
-            temp.y = (contact.point + (wheelFR.transform.up * wheelFR.radius)).y;
-            wheelTransformFR.position = temp;
-        }
-        if (wheelBL.GetGroundHit(out contact))
-        {
-            Vector3 temp = wheelBL.transform.position;
-            temp.y = (contact.point + (wheelBL.transform.up * wheelBL.radius)).y;
-            wheelTransformBL.position = temp;
-        }
-        if (wheelBR.GetGroundHit(out contact))
-        {
-            Vector3 temp = wheelBR.transform.position;
-            temp.y = (contact.point + (wheelBR.transform.up * wheelBR.radius)).y;
-            wheelTransformBR.position = temp;
-        }
-    }
+    //    if (wheelFL.GetGroundHit(out contact))
+    //    {
+    //        Vector3 temp = wheelFL.transform.position;
+    //        temp.y = (contact.point + (wheelFL.transform.up * wheelFL.radius)).y;
+    //        wheelTransformFL.position = temp;
+    //    }
+    //    if (wheelFR.GetGroundHit(out contact))
+    //    {
+    //        Vector3 temp = wheelFR.transform.position;
+    //        temp.y = (contact.point + (wheelFR.transform.up * wheelFR.radius)).y;
+    //        wheelTransformFR.position = temp;
+    //    }
+    //    if (wheelBL.GetGroundHit(out contact))
+    //    {
+    //        Vector3 temp = wheelBL.transform.position;
+    //        temp.y = (contact.point + (wheelBL.transform.up * wheelBL.radius)).y;
+    //        wheelTransformBL.position = temp;
+    //    }
+    //    if (wheelBR.GetGroundHit(out contact))
+    //    {
+    //        Vector3 temp = wheelBR.transform.position;
+    //        temp.y = (contact.point + (wheelBR.transform.up * wheelBR.radius)).y;
+    //        wheelTransformBR.position = temp;
+    //    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
         //check if vehicle is on the track
