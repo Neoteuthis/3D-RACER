@@ -10,7 +10,8 @@ public class RaceManager : MonoBehaviour
     private float[] respawnTimes;
     private float[] distanceLeftToTravel;
     private Transform[] waypoint;
-
+    public enum gamestate {countdown, playing, paused, menu, raceover};
+    public static gamestate currentstate;
     // Use this for initialization
     void Start()
     {
@@ -31,6 +32,10 @@ public class RaceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currentstate == 0)
+        {
+
+        }
         //check if any of the cars need a respawn.
         for (int i = 0; i < cars.Length; ++i)
         {

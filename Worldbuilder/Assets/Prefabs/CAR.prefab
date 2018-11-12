@@ -1273,11 +1273,13 @@ MonoBehaviour:
   maxtorque: 5000
   maxTurningAngle: 10
   currentpos: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
   wheelFL: {fileID: 146549016430302256}
   wheelFR: {fileID: 146816738222878026}
   wheelBL: {fileID: 146635577113800964}
   wheelBR: {fileID: 146807611855783844}
   centerOfMassAdjustment: {x: 0, y: -5, z: 0}
+  backlights: {fileID: 0}
   spoilerRatio: 50
   wheelTransformFL: {fileID: 4636106125975006}
   wheelTransformFR: {fileID: 4141641355693710}
@@ -1285,6 +1287,16 @@ MonoBehaviour:
   wheelTransformBR: {fileID: 4284402478621240}
   decelerationTorque: 30
   topSpeed: 2000
+  acceleration: 0
+  maxacceleration: 100
+  maxoffroadacceleration: 40
+  isonroad: 1
+  ismanual: 1
+  isgrounded: 1
+  isplayerchar: 0
+  maxBrakeTorque: 100
+  handbrakeForwardSlip: 0.04
+  handbrakeSidewaysSlip: 0.08
 --- !u!146 &146549016430302256
 WheelCollider:
   m_ObjectHideFlags: 1
