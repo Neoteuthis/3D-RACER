@@ -2,6 +2,9 @@
 public class playerscript : MonoBehaviour
 {
     //vars
+    public Transform waypointContainer;
+    private Transform[] waypoints;
+    private int currentWaypoint = 0;
     public float maxtorque = 10;
     public float maxTurningAngle = 10;
     public Vector3 currentpos;
@@ -101,6 +104,7 @@ public class playerscript : MonoBehaviour
 
                 wheelBL.brakeTorque = decelerationTorque + maxtorque;
                 wheelBR.brakeTorque = decelerationTorque + maxtorque;
+                acceleration--;
             }
             else if (!applyHandbrake && Input.GetAxis("Vertical") == 0)
             {
@@ -139,10 +143,10 @@ public class playerscript : MonoBehaviour
     {
         if (RaceManager.currentstate == RaceManager.gamestate.playing)
         {
-            //if (isplayerchar)
-            //{
-            //    playeracceleration = Mathf.Abs(acceleration / 100);
-            //}
+            if (isplayerchar)
+            {
+                playeracceleration = Mathf.Abs(acceleration / 100);
+            }
             ////alternate control scheme
             //if (ismanual) {
             //     body.velocity = transform.forward * acceleration;
@@ -277,4 +281,34 @@ void SetSlipValues(float forward, float sideways)
     tempStruct.stiffness = sideways;
     wheelBL.sidewaysFriction = tempStruct;
 }
+    void GetWaypoints()
+    {
+        //NOTE: Unity named this function poorly it also returns the parent’s component.
+        Transform[] potentialWaypoints = waypointContainer.GetComponentsInChildren<Transform>();
+
+        //initialize the waypoints array so that is has enough space to store the nodes.
+        waypoints = new Transform[(potentialWaypoints.Length - 1)];
+
+        //loop through the list and copy the nodes into the array.
+        //start at 1 instead of 0 to skip the WaypointContainer’s transform.
+        for (int i = 1; i < potentialWaypoints.Length; ++i)
+        {
+            waypoints[i - 1] = potentialWaypoints[i];
+        }
+    }
+
+    public Transform GetCurrentWaypoint()
+    {
+        return waypoints[currentWaypoint];
+    }
+
+    public Transform GetLastWaypoint()
+    {
+        if (currentWaypoint - 1 < 0)
+        {
+            return waypoints[waypoints.Length - 1];
+        }
+
+        return waypoints[currentWaypoint - 1];
+    }
 }
