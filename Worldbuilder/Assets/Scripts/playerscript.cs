@@ -120,9 +120,9 @@ public class playerscript : MonoBehaviour
                 //rear wheel drive.
                 wheelBL.motorTorque = Input.GetAxis("Vertical") * maxtorque;
                 wheelBR.motorTorque = Input.GetAxis("Vertical") * maxtorque;
-                //four wheel drive.
-                wheelFL.motorTorque = Input.GetAxis("Vertical") * maxtorque;
-                wheelFR.motorTorque = Input.GetAxis("Vertical") * maxtorque;
+                //four wheel drive. NVM.
+             //   wheelFL.motorTorque = Input.GetAxis("Vertical") * maxtorque;
+               // wheelFR.motorTorque = Input.GetAxis("Vertical") * maxtorque;
             }
             else
             {
@@ -154,22 +154,23 @@ public class playerscript : MonoBehaviour
             //       body.velocity = new Vector3(transform.forward.x * acceleration, -98f, transform.forward.z * acceleration);
             //    }
             //    //controls
-            //    if (Input.GetKey(KeyCode.W) )
-            //{
-            //        if (isonroad == true && acceleration <= maxacceleration)
-            //        {
-            //            acceleration++;
-            //        }
-            //        if (isonroad == false && acceleration <= maxoffroadacceleration)
-            //        {
-            //            acceleration++;
-            //        }
-            //        backlights.SetActive(false);
-            //    } else if (acceleration > 0)
-            //{
-            //    acceleration--;
-            //    backlights.SetActive(true);
-            //    }
+            if (Input.GetKey(KeyCode.W))
+            {
+                if (isonroad == true && acceleration <= maxacceleration)
+                {
+                    acceleration++;
+                }
+                if (isonroad == false && acceleration <= maxoffroadacceleration)
+                {
+                    acceleration++;
+                }
+                backlights.SetActive(false);
+            }
+            else if (acceleration > 0)
+            {
+                acceleration--;
+                backlights.SetActive(true);
+            }
             if (Input.GetKey(KeyCode.A))
             {
                 transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * maxTurningAngle, Space.World);
@@ -178,23 +179,22 @@ public class playerscript : MonoBehaviour
             {
                 transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * maxTurningAngle, Space.World);
             }
-            //if (Input.GetKey(KeyCode.S))
-            //{
-            //        if (isonroad == true && acceleration >= -maxacceleration)
-            //        {
-            //            acceleration--;
-            //        }
-            //        if (isonroad == false && acceleration >= -maxoffroadacceleration)
-            //        {
-            //            acceleration--;
-            //        }
-            //    }
-            //    else if (acceleration < 0)
-            //    {
-            //        acceleration++;
-            //    }
-            //}
-            float rotationThisFrame = 360 * Time.deltaTime;
+            if (Input.GetKey(KeyCode.S))
+            {
+                if (isonroad == true && acceleration >= -maxacceleration)
+                {
+                    acceleration--;
+                }
+                if (isonroad == false && acceleration >= -maxoffroadacceleration)
+                {
+                    acceleration--;
+                }
+            }
+            else if (acceleration < 0)
+            {
+                acceleration++;
+            }
+        float rotationThisFrame = 360 * Time.deltaTime;
             wheelTransformFL.Rotate(0, -wheelFL.rpm / rotationThisFrame, 0);
             wheelTransformFR.Rotate(0, -wheelFR.rpm / rotationThisFrame, 0);
             wheelTransformBL.Rotate(0, -wheelBL.rpm / rotationThisFrame, 0);
