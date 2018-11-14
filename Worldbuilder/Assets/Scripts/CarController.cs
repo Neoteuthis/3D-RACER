@@ -150,7 +150,7 @@ public class CarController : MonoBehaviour
             {
                 //can't go faster, already at top speed that engine produces.
                 wheelBL.motorTorque = 0;
-                wheelBR.motorTorque = 0;
+               wheelBR.motorTorque = 0;
             }
         }
     }

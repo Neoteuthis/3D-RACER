@@ -16,6 +16,8 @@ public class skidscript : MonoBehaviour {
     }
     void Update()
     {
+        return;
+
         if (wheelCollider.forwardFriction.stiffness < 0.1f && wheelCollider.isGrounded)
         {
             //if skidMark’s time variable is 0 than we have reset it previously and can now use it.
