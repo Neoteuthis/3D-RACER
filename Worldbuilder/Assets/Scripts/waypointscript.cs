@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class waypointscript : MonoBehaviour {
         public float size = 1f;
-        private Transform[] waypoints;
+    private List<Transform> waypointstest = new List<Transform>();
+       private Transform[] waypoints;
         void OnDrawGizmos()
         {
             waypoints = gameObject.GetComponentsInChildren<Transform>();
             Vector3 last = waypoints[waypoints.Length - 1].position;
-            for (int i = 1; i < waypoints.Length; i++)
+        waypointstest.ForEach(thingy => System.Console.WriteLine(thingy));
+        for (int i = 1; i < waypoints.Length; i++)
             {
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawSphere(waypoints[i].position, size);

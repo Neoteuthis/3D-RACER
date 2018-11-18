@@ -37,7 +37,7 @@ public class CarController : MonoBehaviour
     private int currentWaypoint = 0;
     private float inputSteer;
     private float inputTorque;
-
+    private float avoidance = 0;
     void Start()
     {
         //so we don't have to search for it every update.
@@ -73,12 +73,47 @@ public class CarController : MonoBehaviour
     // FixedUpdate is called once per physics frame
     void FixedUpdate()
     {
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 left = transform.TransformDirection(Vector3.left);
+        Vector3 right = transform.TransformDirection(Vector3.right);
+
+        //calculate turn angle
+        Vector3 RelativeWaypointPosition = transform.InverseTransformPoint(new Vector3(waypoints[currentWaypoint].position.x, transform.position.y, waypoints[currentWaypoint].position.z));
+        inputSteer = RelativeWaypointPosition.x / RelativeWaypointPosition.magnitude;
+
+        Debug.DrawRay(transform.position, forward * 4, Color.green);
+        Debug.DrawRay(transform.position, left * 4, Color.blue);
+        Debug.DrawRay(transform.position, right * 4, Color.red);
+
+        avoidance = 1f;
+
+
+        RaycastHit hit;
+        //uses unity units
+        if (Physics.Raycast(transform.position, forward, out hit, 4))
+        {
+            if(hit.collider.gameObject != gameObject)
+                applyHandbrake = true;
+            //check against other cars only
+            //Make sure right raycast works (when driving on the right side of the ai, the ai will turn left)
+            //Now make sure the left works.
+            // Raise the collider so its not hitting the ground
+
+        }
+        if (Physics.Raycast(transform.position, left, out hit, 4))
+        {
+            if (hit.collider.gameObject != gameObject && hit.collider.gameObject.tag == "Car")
+                avoidance = 2f;
+        }
+        if (Physics.Raycast(transform.position, right, out hit, 4))
+        {
+            Transform test = gameObject.transform.Find(hit.collider.gameObject.name);
+            if (test && hit.collider.gameObject != test && hit.collider.gameObject.tag == "Car")
+                avoidance = -2f;
+        }
+
         if (RaceManager.currentstate == RaceManager.gamestate.playing)
         {
-            //calculate turn angle
-            Vector3 RelativeWaypointPosition = transform.InverseTransformPoint(new Vector3(waypoints[currentWaypoint].position.x, transform.position.y, waypoints[currentWaypoint].position.z));
-            inputSteer = RelativeWaypointPosition.x / RelativeWaypointPosition.magnitude;
-
             //Spoilers add down pressure based on the car’s speed. (Upside-down lift)
             Vector3 localVelocity = transform.InverseTransformDirection(body.velocity);
             body.AddForce(-transform.up * (localVelocity.z * spoilerRatio), ForceMode.Impulse);
@@ -98,7 +133,7 @@ public class CarController : MonoBehaviour
                     applyHandbrake = true;
                 }
                 //if not moving forward backup and turn opposite.
-                else if (localVelocity.z < 0)
+                else if (localVelocity.z < 0)// && localVelocity.z > -20)
                 {
                     applyHandbrake = false;
                     inputTorque = -1;
@@ -133,10 +168,10 @@ public class CarController : MonoBehaviour
                     currentWaypoint = 0;
                 }
             }
-
+            
             //front wheel steering
-            wheelFL.steerAngle = inputSteer * maxTurnAngle;
-            wheelFR.steerAngle = inputSteer * maxTurnAngle;
+            wheelFL.steerAngle = avoidance * (inputSteer * maxTurnAngle);
+            wheelFR.steerAngle = avoidance * (inputSteer * maxTurnAngle);
 
             //calculate max speed in KM/H (optimized calc)
             currentSpeed = wheelBL.radius * wheelBL.rpm * Mathf.PI * 0.12f;
@@ -284,7 +319,10 @@ public class CarController : MonoBehaviour
 
     public Transform GetCurrentWaypoint()
     {
-        return waypoints[currentWaypoint];
+        if (waypoints.Length >= 1)
+            return waypoints[currentWaypoint];
+
+        return null;
     }
 
     public Transform GetLastWaypoint()

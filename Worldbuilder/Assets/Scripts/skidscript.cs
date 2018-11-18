@@ -16,7 +16,7 @@ public class skidscript : MonoBehaviour {
     }
     void Update()
     {
-        return;
+       // return;
 
         if (wheelCollider.forwardFriction.stiffness < 0.1f && wheelCollider.isGrounded)
         {
