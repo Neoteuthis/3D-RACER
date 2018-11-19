@@ -104,12 +104,14 @@ public class CarController : MonoBehaviour
         {
             if (hit.collider.gameObject != gameObject && hit.collider.gameObject.tag == "Car")
                 avoidance = 2f;
+            transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * maxTurnAngle, Space.World);
         }
         if (Physics.Raycast(transform.position, right, out hit, 4))
         {
             Transform test = gameObject.transform.Find(hit.collider.gameObject.name);
             if (test && hit.collider.gameObject != test && hit.collider.gameObject.tag == "Car")
                 avoidance = -2f;
+            transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * maxTurnAngle, Space.World);
         }
 
         if (RaceManager.currentstate == RaceManager.gamestate.playing)
