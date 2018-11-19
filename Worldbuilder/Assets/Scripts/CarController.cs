@@ -81,7 +81,7 @@ public class CarController : MonoBehaviour
         Vector3 RelativeWaypointPosition = transform.InverseTransformPoint(new Vector3(waypoints[currentWaypoint].position.x, transform.position.y, waypoints[currentWaypoint].position.z));
         inputSteer = RelativeWaypointPosition.x / RelativeWaypointPosition.magnitude;
 
-        Debug.DrawRay(transform.position, forward * 4, Color.green);
+        Debug.DrawRay(transform.position, forward * 10, Color.green);
         Debug.DrawRay(transform.position, left * 4, Color.blue);
         Debug.DrawRay(transform.position, right * 4, Color.red);
 
@@ -90,28 +90,29 @@ public class CarController : MonoBehaviour
 
         RaycastHit hit;
         //uses unity units
-        if (Physics.Raycast(transform.position, forward, out hit, 4))
+        if (Physics.Raycast(transform.position, forward, out hit, 10))
         {
-            if(hit.collider.gameObject != gameObject)
+            if(hit.collider.gameObject != gameObject && hit.collider.gameObject.tag == "Car")
                 applyHandbrake = true;
             //check against other cars only
             //Make sure right raycast works (when driving on the right side of the ai, the ai will turn left)
             //Now make sure the left works.
             // Raise the collider so its not hitting the ground
+         //   transform.Rotate(new Vector3(0, 1f, 0) * Time.deltaTime * maxTurnAngle, Space.World);
 
         }
         if (Physics.Raycast(transform.position, left, out hit, 4))
         {
             if (hit.collider.gameObject != gameObject && hit.collider.gameObject.tag == "Car")
                 avoidance = 2f;
-            transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * maxTurnAngle, Space.World);
+          //  transform.Rotate(new Vector3(0, 0.1f, 0) * Time.deltaTime * maxTurnAngle, Space.World);
         }
         if (Physics.Raycast(transform.position, right, out hit, 4))
         {
             Transform test = gameObject.transform.Find(hit.collider.gameObject.name);
             if (test && hit.collider.gameObject != test && hit.collider.gameObject.tag == "Car")
                 avoidance = -2f;
-            transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * maxTurnAngle, Space.World);
+          //  transform.Rotate(new Vector3(0, -0.1f, 0) * Time.deltaTime * maxTurnAngle, Space.World);
         }
 
         if (RaceManager.currentstate == RaceManager.gamestate.playing)
